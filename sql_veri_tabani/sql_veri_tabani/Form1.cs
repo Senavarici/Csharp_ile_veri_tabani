@@ -25,7 +25,7 @@ namespace sql_veri_tabani
 
         void GetList()
         {
-            con = new SQLiteConnection("Data Source = kayit.sqlite; Version = 3;");
+            con = new SQLiteConnection("Data Source = kayit.db; Version = 3;");
             da = new SQLiteDataAdapter("Select *From Employee", con);
             ds = new DataSet();
             con.Open();
@@ -36,17 +36,17 @@ namespace sql_veri_tabani
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (File.Exists("kayit.sqlite"))
+            if (File.Exists("kayit.db"))
             {
 
-                SQLiteConnection.CreateFile("kayit.sqlite");
+                SQLiteConnection.CreateFile("kayit.db");
                 string sql = @"Create Table Employee(
                                Id INTEGER PRIMARY KEY AUTOINCREMENT,
                                FirstName Text  Not Null,
                                LastName  Text  Not Null,
                                WorkExperience
                             );";
-                con = new SQLiteConnection("Data Source=kayit.sqlite;Version=3;");
+                con = new SQLiteConnection("Data Source=kayit.db;Version=3;");
                 con.Open();
                 cmd = new SQLiteCommand(sql, con);
                 cmd.ExecuteNonQuery();
